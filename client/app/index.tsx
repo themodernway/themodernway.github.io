@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import Panel from "./Panel";
+import Application from "./Application";
 
 declare const module: any;
 
 const render = () => {
     ReactDOM.render(
         <AppContainer>
-            <Panel text="Hello"/>
+            <Application text="The Modern Way"/>
         </AppContainer>,
         document.getElementById("root"),
     );

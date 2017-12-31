@@ -1,0 +1,30 @@
+@import "variables";
+
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: $bg-application-color;
+};
+
+#root {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    width: percentage($number: 100);
+    height: percentage($number: 100);
+    background-color: $bg-application-color;
+};
+
+.ApplicationClass {
+    font-size: $font-size;
+    font-family: $font-family;
+    background-color: $bg-color;
+    color: $fg-color;
+    padding: 0px;
+    margin: 0px;
+};
+
+.ApplicationText {
+    font-size: $font-size + 6;
+};

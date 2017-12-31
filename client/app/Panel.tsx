@@ -17,7 +17,6 @@ class Panel extends Component<PanelProps, PanelState> {
         return (
             <div className={styles.PanelClass}>
                 <h1 className={styles.PanelText}>{text}</h1>
-                <p>{updated.toLocaleString()}</p>
             </div>
         );
     }
