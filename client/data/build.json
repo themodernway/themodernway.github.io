@@ -1,0 +1,10 @@
+{
+  "name": "@GRADLE_BUILD_ARTIFACT_ID@",
+  "version": "@GRADLE_BUILD_MODULE_VERSION@",
+  "description": "The Modern Way",
+  "author": "Dean S. Jones",
+  "license": "Apache-2.0",
+  "homepage": "@GRADLE_GIT_HOME_URL@",
+  "commit_last": "@GRADLE_GIT_COMMIT_HASH@",
+  "commit_user": "@GRADLE_GIT_COMMIT_USER@"
+}

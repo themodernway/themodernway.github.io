@@ -1,6 +1,6 @@
 {
   "name": "themodernway.github.io",
-  "version": "1.0.0",
+  "version": "1.2.22",
   "description": "The Modern Way",
   "main": "app/index.tsx",
   "scripts": {
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/themodernway/themodernway.github.io.git"
   },
   "author": "SprocketNYC",
-  "license": "Apache",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/themodernway/themodernway.github.io/issues"
   },
