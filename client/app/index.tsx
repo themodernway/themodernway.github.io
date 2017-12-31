@@ -8,7 +8,7 @@ declare const module: any;
 const render = () => {
     ReactDOM.render(
         <AppContainer>
-            <Application text="The Modern Way"/>
+            <Application label="The Modern Way" />
         </AppContainer>,
         document.getElementById("root"),
     );

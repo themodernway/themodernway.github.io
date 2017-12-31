@@ -10,14 +10,15 @@ class Application extends Component<ApplicationProps, ApplicationState> {
             updated: new Date(),
         };
     }
-    
+
     public render() {
-        const { text } = this.props;
+        const { label } = this.props;
         const { updated } = this.state;
 
         return (
             <div className={styles.ApplicationClass}>
-                <Panel text={text}/>
+                <h3>{label}</h3>
+                <Panel label={label} />
                 <p>{updated.toLocaleString()}</p>
             </div>
         );
@@ -25,7 +26,7 @@ class Application extends Component<ApplicationProps, ApplicationState> {
 }
 
 interface ApplicationProps {
-    text: string;
+    label: string;
 }
 
 interface ApplicationState {

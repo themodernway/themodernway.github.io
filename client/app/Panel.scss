@@ -11,3 +11,12 @@
 .PanelText {
     font-size: $font-size + 16;
 };
+
+.DemoResultsBox {
+	border: 1px solid black;
+	padding: 5px;
+	height: 300px;
+    overflow: auto;
+    color: black;
+    background-color: white;
+};

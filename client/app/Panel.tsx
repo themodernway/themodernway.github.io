@@ -6,28 +6,30 @@ class Panel extends Component<PanelProps, PanelState> {
         super(props);
 
         this.state = {
-            updated: new Date(),
+            value: "1 2 3",
         };
     }
 
     public render() {
-        const { text } = this.props;
-        const { updated } = this.state;
+        const { label } = this.props;
+        const { value } = this.state;
 
         return (
             <div className={styles.PanelClass}>
-                <h1 className={styles.PanelText}>{text}</h1>
+                <div className={styles.DemoResultsBox} id="DemoResultsBox">
+                    <pre>{value}</pre>
+                </div>
             </div>
         );
     }
 }
 
 interface PanelProps {
-    text: string;
+    label: string;
 }
 
 interface PanelState {
-    updated: Date;
+    value: string;
 }
 
 export default Panel;
