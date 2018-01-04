@@ -15,9 +15,7 @@
  */
 
 buildscript {
-    repositories {
-        mavenCentral()
-    }
+    repositories { mavenCentral() }
     dependencies {
         classpath(group: 'org.ajoberstar', name: 'grgit', version: '1.7.2')
         classpath(group: 'commons-codec', name: 'commons-codec', version: '1.11')
@@ -45,9 +43,7 @@ version = '1.2.22'
 group = 'com.themodernway'
 
 eclipse {
-    classpath {
-        downloadJavadoc = true
-    }
+    classpath { downloadJavadoc = true }
 }
 
 def getFilterTokens() {
@@ -75,13 +71,11 @@ def String getBuildDate() {
 }
 
 def String getBuildServerHost() {
-    try
-    {
+    try {
         InetAddress.getLocalHost().getHostName()
     }
-    catch (Exception e)
-    {
-        "localhost"
+    catch (Exception e) {
+        'localhost'
     }
 }
 
@@ -94,7 +88,7 @@ def String getBuildUser() {
 }
 
 def String getBuildServerBuild() {
-    System.getProperty('BUILD_DISPLAY_NAME') ?: 'Command line ' + GradleVersion.current().toString()
+    System.getenv('BUILD_DISPLAY_NAME') ?: "Command line gradle version ${gradle.gradleVersion}"
 }
 
 def String getBuildGITHomeURL() {
@@ -114,25 +108,23 @@ def String getBuildGITCommitMessage() {
 }
 
 def getBuildCommand() {
-    Os.isFamily(Os.FAMILY_WINDOWS) ? ['cmd', '/c', 'build.bat'] : ['build.sh']
+    Os.isFamily(Os.FAMILY_WINDOWS) ? ['cmd', '/c', 'build.bat']: ['build.sh']
 }
 
 repositories {
     mavenCentral()
-    maven {
-        url "${sonatype_snapshotURL}"
-    }
+    maven { url "${sonatype_snapshotURL}" }
 }
 
 task deleteClient(type: Delete) {
-    FileTree tree = fileTree(dir: "client/dist")
+    FileTree tree = fileTree(dir: 'client/dist')
     tree.each { File file ->
         delete(file)
     }
 }
 
 task deleteData(type: Delete) {
-    FileTree tree = fileTree(dir: "site/data")
+    FileTree tree = fileTree(dir: 'site/data')
     tree.each { File file ->
         delete(file)
     }
@@ -144,15 +136,15 @@ task buildClient(dependsOn: deleteClient, type: Exec) {
 }
 
 task buildData(dependsOn: deleteData, type: Copy) {
-    from "client/data"
-    into "site/data"
+    from 'client/data'
+    into 'site/data'
     filter(FixCrLfFilter)
     filter(ReplaceTokens, tokens: getFilterTokens())
 }
 
-task publish(dependsOn: [buildClient,buildData], type: Copy) {
-    from "client/dist"
-    into "site"
+task publish(dependsOn: [buildClient, buildData], type: Copy) {
+    from 'client/dist'
+    into 'site'
     filter(FixCrLfFilter)
     filter(ReplaceTokens, tokens: getFilterTokens())
 }
