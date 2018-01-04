@@ -26,6 +26,7 @@ buildscript {
     }
 }
 
+import org.apache.tools.ant.taskdefs.condition.Os
 import org.apache.tools.ant.filters.FixCrLfFilter
 import org.apache.tools.ant.filters.ReplaceTokens
 import java.net.InetAddress
@@ -112,6 +113,10 @@ def String getBuildGITCommitMessage() {
     Grgit.open(project.file('.')).head().shortMessage
 }
 
+def getBuildCommand() {
+    Os.isFamily(Os.FAMILY_WINDOWS) ? ['cmd', '/c', 'build.bat'] : ['build.sh']
+}
+
 repositories {
     mavenCentral()
     maven {
@@ -127,7 +132,7 @@ task deleteClient(type: Delete) {
 }
 
 task deleteData(type: Delete) {
-    FileTree tree = fileTree(dir: "data")
+    FileTree tree = fileTree(dir: "site/data")
     tree.each { File file ->
         delete(file)
     }
@@ -135,19 +140,19 @@ task deleteData(type: Delete) {
 
 task buildClient(dependsOn: deleteClient, type: Exec) {
     workingDir 'client'
-    commandLine './build.sh'
+    commandLine getBuildCommand()
 }
 
 task buildData(dependsOn: deleteData, type: Copy) {
     from "client/data"
-    into "data"
+    into "site/data"
     filter(FixCrLfFilter)
     filter(ReplaceTokens, tokens: getFilterTokens())
 }
 
 task publish(dependsOn: [buildClient,buildData], type: Copy) {
     from "client/dist"
-    into "."
+    into "site"
     filter(FixCrLfFilter)
     filter(ReplaceTokens, tokens: getFilterTokens())
 }
